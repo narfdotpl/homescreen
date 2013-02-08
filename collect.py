@@ -29,15 +29,15 @@ def commit(path):
     iso_date = get_iso_date(path)
     system("""
     mv '%(src)s' '%(dst)s'
-    convert '%(dst)s' -resize 75%% '%(curr)s'
+    convert '%(dst)s' -resize 75%% '%(latest)s'
     optipng '%(dst)s'
-    optipng '%(curr)s'
+    optipng '%(latest)s'
     git add .
     git commit --message %(date)s
     """.strip().replace('\n', ' && ') % {
         'src': path,
         'dst': join(SCREENSHOTS_DIR, iso_date + '.png'),
-        'curr': join(CURRENT_DIR, 'current_480.png'),
+        'latest': join(CURRENT_DIR, 'latest_480.png'),
         'date': iso_date,
     })
 
