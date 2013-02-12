@@ -18,7 +18,8 @@ def get_iso_date(path):
 def get_paths(dir_='~/Dropbox/homescreen'):
     dir_ = realpath(expanduser(dir_))
     for name in listdir(dir_):
-        yield join(dir_, name)
+        if name.endswith('.png'):
+            yield join(dir_, name)
 
 
 def sort_paths(paths):
